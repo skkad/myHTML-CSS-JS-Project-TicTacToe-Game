@@ -4,8 +4,12 @@ let audioTurn = new Audio("ting.mp3")
 let gameover = new Audio("gameover.mp3")
 let turn = "X"
 let isgameover = false;
+<<<<<<< HEAD
 let count = 9;
 
+=======
+let count=9;
+>>>>>>> 8ab8d9c337884595d65d2a0f6cc3e180f72b1e2a
 
 // Function to change the turn
 const changeTurn = ()=>{
@@ -26,6 +30,7 @@ const checkWin = ()=>{
         [0, 4, 8, 5, 15, 45],
         [2, 4, 6, 5, 15, 135],
     ]
+<<<<<<< HEAD
     wins.forEach(e =>   {    
             if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && (boxtext[e[0]].innerText !== "") ){
                 document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won The Game"
@@ -38,6 +43,18 @@ const checkWin = ()=>{
                 document.querySelector(".container").style.display="none";
                 document.querySelector('#reset').innerText="play again";
             }
+=======
+    wins.forEach(e =>{
+        if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && (boxtext[e[0]].innerText !== "") ){
+            document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won the game"
+            isgameover = true
+            document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
+            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
+            document.querySelector(".line").style.width = "20vw";
+            document.querySelector(".container").style.display="none";
+            document.querySelector('#reset').innerText ="play again";
+        }
+>>>>>>> 8ab8d9c337884595d65d2a0f6cc3e180f72b1e2a
     })
 };    
 
@@ -59,6 +76,7 @@ Array.from(boxes).forEach(element =>{
             //     count--;
             // }
             checkWin();
+<<<<<<< HEAD
             // console.log(checkWin());
             count--;
   
@@ -70,6 +88,18 @@ Array.from(boxes).forEach(element =>{
                 document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
             }            
         }
+=======
+            console.log(checkWin());  
+            count--;
+            if(count==0 && !isgameover){
+                console.log("Game Draw");
+                document.getElementsByClassName("info")[0].innerText  = "Game Draw! Please reset to play again";
+            }
+            else if(!isgameover){
+            document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
+            }
+    }
+>>>>>>> 8ab8d9c337884595d65d2a0f6cc3e180f72b1e2a
     })
 })
 
@@ -81,7 +111,11 @@ reset.addEventListener('click', ()=>{
     });
     turn = "X"; 
     isgameover = false;
+<<<<<<< HEAD
     count = 9;
+=======
+    count=9;
+>>>>>>> 8ab8d9c337884595d65d2a0f6cc3e180f72b1e2a
     document.querySelector(".container").style.display="grid";
     document.querySelector(".line").style.width = "0vw";
     document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
