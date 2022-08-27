@@ -4,6 +4,7 @@ let audioTurn = new Audio("ting.mp3")
 let gameover = new Audio("gameover.mp3")
 let turn = "X"
 let isgameover = false;
+let count=9;
 
 // Function to change the turn
 const changeTurn = ()=>{
@@ -25,11 +26,13 @@ const checkWin = ()=>{
     ]
     wins.forEach(e =>{
         if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && (boxtext[e[0]].innerText !== "") ){
-            document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won"
+            document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won the game"
             isgameover = true
             document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
             document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
             document.querySelector(".line").style.width = "20vw";
+            document.querySelector(".container").style.display="none";
+            document.querySelector('#reset').innerText ="play again";
         }
     })
 }
@@ -45,10 +48,16 @@ Array.from(boxes).forEach(element =>{
             turn = changeTurn();
             audioTurn.play();
             checkWin();
-            if (!isgameover){
-                document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
-            } 
-        }
+            console.log(checkWin());  
+            count--;
+            if(count==0 && !isgameover){
+                console.log("Game Draw");
+                document.getElementsByClassName("info")[0].innerText  = "Game Draw! Please reset to play again";
+            }
+            else if(!isgameover){
+            document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
+            }
+    }
     })
 })
 
@@ -59,7 +68,9 @@ reset.addEventListener('click', ()=>{
         element.innerText = ""
     });
     turn = "X"; 
-    isgameover = false
+    isgameover = false;
+    count=9;
+    document.querySelector(".container").style.display="grid";
     document.querySelector(".line").style.width = "0vw";
     document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px"
